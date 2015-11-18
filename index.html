@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Henrique Yoshikazu Shishido and Leonildo José de Melo de Azevedo">		
+	<meta name="description" content="Batch System Open Educational Resource">
+ 	<meta name="keywords" content="OER, Batch System, Operating System, Sistemas Operacionais, Sistemas Batch">
+
+	<title class="trn">Batch Simulator</title>
+
+	<!-- Bootstrap -->
+	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+	<!-- <link href="View/bootstrap.min.css" rel="stylesheet"> -->
+	<link href="View/starter-template.css" rel="stylesheet">
+</head>
+
+<body>
+	
+	<!-- NAVIGATION BAR -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+				<!-- <a class="navbar-brand" href="#"></a> -->
+			</div>
+
+			<div id="navbar" class="collapse navbar-collapse">
+				<img class="pull-left" src="imgs/basoper_logo.png" width="18%" height="18%"/>
+				<img class="pull-right margin-top-8" src="imgs/icmc_logo.png" width="7%" height="7%"/>
+
+
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="index.html" class="trn" >Home</a></li>
+					<li><a id="bla" href="Watch.html" class="trn">Watch instructions</a></li>
+					<li><a id="bla" href="About.html" class="trn">About</a></li>
+					<li><a href="contact.html" class="trn">Contact</a></li>
+				</ul>
+
+				<ul class="pull-right margin-top-5">
+					<a href="#" class="trn lang_selector pull-right margin-right-10" data-value="pt"><img src="imgs/pt.png" /></a>
+					<a href="#" class="trn lang_selector " data-value="en"><img src="imgs/en.png" /></a>
+					<a href="#" class="trn lang_selector margin-right-3" data-value="es"><img src="imgs/es.png" /></a>
+				</ul>
+				<input id="btn_new_experiment2" type="button" class="trn btn btn-primary margin-top-8 pull-right margin-right-15" value="New Experiment">
+				<input id="btn_use_experiment" type="button" class="trn btn btn-primary margin-top-8 pull-right margin-right-15" value="Use another policy">
+			</div>
+		</div>
+	</nav>
+	<!-- NAVIGATION BAR -->
+
+
+	<div class="container-fluid">
+		<div class="row-fluid">
+
+			<!-- LEFT SIDE TABLES -->
+			<div id="div_left" class="col-md-8">
+				<div id="div_executionTime" class="panel panel-default h-scroll_timeline">
+					<div class="panel-heading blue">
+						<h3 id="algorithm" class="trn panel-title margin-bottom-15">Algorithm:</h3>
+						<h3 class="trn panel-title margin-bottom-15">Execution Steps</h3>
+						<input id="btn_stop" type="button" class="trn btn btn-success" value="Play">
+						<button id="btn_forward" type='button' class='trn btn btn-default' aria-label='Left Align'>
+							<span class='glyphicon glyphicon-forward' aria-hidden='true'></span>
+						</button> 
+
+					</div>
+					<table id="tb_exectime" class="table job-dad">
+						<thead id="tb_thead">
+							<tr>
+								<!-- EMPTY ROWS ON INIT -->
+							</tr>
+						</thead>
+
+						<tbody id="tbody_teste" class="cell">
+						
+						</tbody>
+					</table>
+				</div>
+
+
+				<div id="div_execution" class="panel panel-default">
+					<div id="fixed-panel" class="panel-heading green">
+						<h3 class="trn panel-title">Execution</h3>
+					</div>
+
+					<table id="tb_execution" class="table job-dad">
+						<thead>
+							<tr>
+								<!-- EMPTY ROWS ON INIT -->
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr id="tbody_execution"> 
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+
+				<div id="div_executinQueue" class="panel panel-default h-scroll">
+					<div id="fixed-panel" class="panel-heading yellow">
+						<h3 class="trn panel-title">Ready Queue</h3>
+					</div>
+
+					<table id="tb_execqueue" class="table job-dad">
+						<thead>
+							<tr>
+								<!-- EMPTY ROWS ON INIT -->
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr id="tbody_execqueue"> 
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div id="div_blockedQueue" class="panel panel-default h-scroll">
+					<div id="fixed-panel" class="panel-heading red">
+						<h3 class="trn panel-title">Blocked Queue</h3>
+					</div>
+
+					<table id="tb_blockedQueue" class="table job-dad">
+						<thead>
+							<tr>
+								<!-- EMPTY ROWS ON INIT -->
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr id="tbody_blockedQueue"> 
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div id="div_jobsStats" class="panel panel-default h-scroll margin-bottom-70">
+					<div id="fixed-panel2" class="panel-heading">
+						<h3 class="trn panel-title">Run Statistics</h3>
+					</div>
+
+					<table id="tb_jobsStats" class="table job-dad">
+						<thead>
+							<tr>
+								<!-- EMPTY ROWS ON INIT -->
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr id="tbody_jobsStats"> 
+								
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+
+				<div class="panel panel-default" id="div_algorithmForm">
+					<div class="panel-heading blue">
+						<h3 class="trn panel-title">Experiment Parameters</h3>
+					</div>
+					<div class="panel-body">
+
+						<form id="algorithmForm">
+							<div id='algorithm'>
+								<div class="row">
+									<div class="form-group">
+								<!-- 		<div class="col-md-12 margin-bottom-15">
+											<input id="btn_new_experiment" type="button" class="trn btn btn-primary form-control" value="New Experiment">
+										</div> -->
+
+										<div class="col-md-5">
+											<h4 class="trn policy-header">Policy:</h4>
+										</div>
+										<div class="col-md-7">
+											<div class="row">
+												<div id="div_fcfs" class="col-md-4 text-center font-size-11" rel="popover" data-content="(Non-preemptive) Jobs are executed on first come, first serve basis; Easy to understand and implement; Poor in performance as average wait time is high." data-placement="bottom" data-original-title="FCFS" data-trigger="hover">
+													<label for="rb_fcfs">FCFS</label>
+													<input type='radio' id='rb_fcfs' name='type' value='FCFS' checked="checked" />
+												</div>
+												<div id="div_sjf" class="col-md-4 font-size-11" rel="popover" data-content="(Non-preemptive) Best approach to minimize waiting time; Impossible to implement; Processer should know in advance how much time process will take." data-placement="bottom" data-original-title="SJF" data-trigger="hover">
+												   	<label for="rb_sjf">SJF</label>
+													<input type='radio' id='rb_sjf'	name='type' value='SJF'/>
+												</div>
+												<div id="div_srtn" class="col-md-4 font-size-11" rel="popover" data-content="(Preemptive) Process with the smallest amount of time remaining is selected; Shortest jobs are handled quickly; Long jobs can suffers with starvation" data-placement="bottom" data-original-title="SRTN" data-trigger="hover">
+													<label for="rb_srtn">SRTN</label>
+													<input type='radio' id='rb_srtn' name='type' value='SRTN'/>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="form-group">
+									<div class="col-md-12">
+										<input id="txtArrival" type="text" class="trn form-control" placeholder="Arrival time"> <br>
+									</div>
+									<div class="col-md-12">
+										<input id="txtInstructions" type="text" class="trn form-control" placeholder="Instructions (P: CPU | B: I/O)"> <br> 
+									</div>
+									<div class="col-md-12">
+										<input id="btn_add" type="button" class="trn btn btn-primary" value="Add">
+										<input id="btn_randomGen" type="button"	class="trn btn btn-primary" value="Add Random Job">
+									</div>
+								</div>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="panel-heading blue margin-bottom-15">
+									<h3 class="trn panel-title">Sample Lists</h3>
+								</div>
+								<div class="form-group">
+									<div class="col-md-12">
+										<input id="btn_randomList1" type="button" class="trn btn btn-info" value="1">
+										<input id="btn_randomList2" type="button" class="trn btn btn-info" value="2">
+										<input id="btn_randomList3" type="button" class="trn btn btn-info" value="3">
+										<input id="btn_randomList4" type="button" class="trn btn btn-info" value="4">
+									</div>
+								</div>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="form-group">
+									<div class="col-md-12">
+										<input id="btn_start" type="button" class="trn btn btn-success form-control" value="Start">
+									</div>
+								</div>
+							</div>
+
+
+						</form>
+
+					</div>
+				</div>			
+			</div>
+			<!-- LEFT SIDE TABLES -->
+
+			<!-- RIGHT SIDE TABLES -->
+			<div id="div_right" class="col-md-4">
+				<div id="tb_input" class="panel panel-default">
+					<div class="panel-heading blue">
+						<h3 class="trn panel-title">Input Jobs</h3>
+					</div>
+					<div class="panel-body">
+
+						<table id="tb_trace" class="table">
+							<thead>
+								<tr>
+									<th class="trn">Job ID</th>
+									<th class="trn">Arrival time</th>
+									<th class="trn">Instructions</th>
+									<th class="trn action">Action</th>
+								</tr>
+							</thead>
+
+							<tbody id="tbody_trace">
+								<!-- EMPTY ROWS ON INIT -->
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div id="div_legend" class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="trn panel-title" style="font-size:12px">Legend</h3>
+					</div>
+
+					<table id="tb_legend" class="table">
+						<thead>
+						</thead>
+
+						<tbody id="tbody_legend">
+								<!-- EMPTY ROWS ON INIT -->
+								<tr>
+									<td class='trn text-left' style="font-size:11px">AT: Arrival Time</td>
+								</tr>
+
+								<tr>
+									<td class='trn text-left' style="font-size:11px">JID: Job Identificator</td>
+								</tr>
+
+								<tr>
+									<td class='trn text-left' style="font-size:11px">INST: Instructions</td>
+								</tr>
+
+								<tr>
+									<td class='trn text-left' style="font-size:11px">WT: Waiting Time</td>
+								</tr>
+
+								<tr>
+									<td class='trn text-left' style="font-size:11px">TT: Turnaround Time</td>
+								</tr>
+								<tr>
+									<td class='trn text-left' style="font-size:11px">PC: Program Counter</td>
+								</tr>
+								<tr>
+									<td class='trn text-left' style="font-size:11px">P: Processing</td>
+								</tr>
+								<tr>
+									<td class='trn text-left' style="font-size:11px">B: Blocked</td>
+								</tr>								
+
+								<tr>
+									<td class='trn text-left' style="font-size:11px">&#8596: Context Change</td>
+								</tr>
+								<tr>
+									<td class='trn text-left' style="font-size:11px"> - : CPU idle</td>
+								</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div  id="div_statistics" class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="trn panel-title">Performance Statistics</h3>
+					</div>
+
+					<table id="tb_cpuUsage" class="table">
+						<thead>
+						</thead>
+
+						<tbody id="tbody_cpuUsage">
+								<!-- EMPTY ROWS ON INIT -->
+								<tr>
+									<td class='trn text-left'><b>CPU usage (Time Unit | Percentual): </b></td>
+									<td id="cpu_usage"> </td> 
+								</tr>
+								<tr>
+									<td class='trn text-left'><b>Time spent with Context Change (Time Unit | Percentual): </b></td>
+									<td id="context_change"></td>
+								</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!-- RIGHT SIDE TABLES -->
+
+			<!-- FOOTER BAR -->
+			<nav class="navbar navbar-inverse navbar-fixed-bottom gray">
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+							<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+						</button>
+					</div>
+
+					<div id="navbar" class="collapse navbar-collapse">
+						<img src="imgs/bootstrap.png" class="margin-top-15 margin-right-15 pull-right" width="7%" height="7%" />
+						<img src="imgs/jquery.png"  class="margin-top-15 margin-right-15 pull-right" width="7%" height="7%" />
+						<img src="imgs/typescript.png"  class="margin-top-15 margin-right-15 pull-right" width="7%" height="7%" />
+						<img src="imgs/powered.png"  class="margin-right-10 pull-right" width="7%" height="7%" />
+
+					</div>
+				</div>
+			</nav>
+			<!-- FOOTER BAR -->
+		</div>
+
+		<script src="View/jquery.min.js"></script>
+
+		<!-- Início - Necessário para a tradução -->
+		<script src="View/jquery.translate.js"></script>
+		<script type="text/javascript" src="View/dict.js"></script>
+		<!-- Fim - Necessário para a tradução -->
+
+		<script src="View/bootstrap.min.js"></script>
+		<script type="text/javascript" src="Controller/Controller.js"></script>
+		<script type="text/javascript" src="Model/Job.js"></script>
+		<script type="text/javascript" src="Model/FCFS.js"></script>
+		<script type="text/javascript" src="Model/SJF.js"></script>
+		<script type="text/javascript" src="Model/SRTN.js"></script>
+
+		<script>
+			var running = false;
+			var controller = new Controller()
+			var backController = {}
+			var job_id = 0;
+			var arrival_time = 0;
+
+			$("#btn_forward").hide()
+			$("#btn_stop").hide()
+			$("#btn_start").hide()
+
+			$("#div_executinQueue").addClass("hide")
+			$("#div_statistics").addClass("hide")
+			$("#div_legend").addClass("hide")
+			$("#div_executionTime").addClass("hide")
+			$("#div_jobsStats").addClass("hide")
+			$("#div_blockedQueue").addClass("hide")
+			$("#div_execution").addClass("hide")
+
+
+			$("#div_left").removeClass("col-md-8")
+			$("#div_right").removeClass("col-md-4")
+			$("#div_left").addClass("col-md-4")
+			$("#div_right").addClass("col-md-8")
+
+			$("#div_sjf").popover();
+			$("#div_srtn").popover();
+			$("#div_fcfs").popover();
+
+
+		    formatInstructions = function (instructions) {
+		        var splitted = instructions.split(" ");
+		        for (var str in splitted) {
+		            if (!(splitted[str] == "P") && !(splitted[str] == "B")) {
+		                return null;
+		            }
+		        }
+		        return splitted;
+		    };
+		    
+
+
+			$("#btn_use_experiment").click(function() {
+
+		        $("#tbody_teste").html("");
+
+				$("#btn_forward").hide()
+				$("#btn_stop").hide()
+				$("#btn_start").show()
+
+				$("#div_algorithmForm").removeClass("hide")
+				$("#tb_input").removeClass("hide")
+
+				$("#div_executinQueue").addClass("hide")
+				$("#div_statistics").addClass("hide")
+				$("#div_legend").addClass("hide")
+				$("#div_executionTime").addClass("hide")
+				$("#div_jobsStats").addClass("hide")
+				$("#div_blockedQueue").addClass("hide")
+				$("#div_execution").addClass("hide")
+
+
+				$("#div_left").removeClass("col-md-8")
+				$("#div_right").removeClass("col-md-4")
+				$("#div_left").addClass("col-md-4")
+				$("#div_right").addClass("col-md-8")
+
+				setActionColumnVisible(true);
+				controller.updateExecQueue()
+
+			})
+
+			$("#btn_new_experiment2").click(function() {
+
+				location.reload()
+			
+			})
+
+
+			$("#btn_add").click(function() {
+
+				$("#btn_start").show()
+
+				var arrival_time = $("#txtArrival").val()
+				var instructions = $("#txtInstructions").val()
+
+				
+				addJobTable(arrival_time, instructions)
+
+			})
+
+			function addJobTable(arrival_time, instructions) {
+				
+				if (arrival_time.length==0 || !instructions || arrival_time < 0 || instructions <= 0){
+					alert("Incorrect syntax. The field 'Arrival Time' must be filled with a positive integer greater than 0")
+					return
+				}
+				
+
+				if(formatInstructions(instructions) == null) {
+					alert("Incorrect syntax. The field 'instructions' must be filled with P (CPU) or B (I/O) separated by spaces. Ex.: P B P B")
+					return;
+				}
+
+
+				$("#tbody_trace").append(
+								"<tr id='row_job_id_" + job_id + "'  align='center'>" + 
+								"<td id='id'>" + job_id	+ "</td>" + 
+								"<td id='at'>" + arrival_time + " </td>" + 
+								"<td id='inst'>" + instructions + " </td>" + 
+								"<td> <button type='button' class='btn btn-default action' aria-label='Left Align' id='" + job_id + "' onClick='removeRow(this.id)'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></button>  </td> </tr>")
+
+				job_id++;
+
+				$("#txtArrival").val("")
+				$("#txtInstructions").val("")
+				$("#txtArrival").focus()
+			
+			}
+
+			$("#btn_randomList1").click(function() {
+
+				$("#btn_start").show()
+
+				addJobTable(0, "P P P P P P")
+				addJobTable(2,  "P P B B P P")
+				addJobTable(4, "P P P P P P")
+				addJobTable(6,  "P P P P P P")
+				addJobTable(8,  "P P P P B B")				
+
+			})
+
+			$("#btn_randomList2").click(function() {
+
+				$("#btn_start").show()
+
+				addJobTable(0,  "P P P P P P");
+                addJobTable(2,  "P P P");
+                addJobTable(4, "P");
+
+			})
+
+			$("#btn_randomList3").click(function() {
+
+				$("#btn_start").show()
+				addJobTable(0, "B B P P");
+                addJobTable(2, "P B B B P P");
+                addJobTable(4, "P B P P");
+                addJobTable(6, "P P P P P P");
+                addJobTable(8, "P P B");
+
+			})
+
+			$("#btn_randomList4").click(function() {
+
+				$("#btn_start").show()
+				addJobTable(0, "P P P P P P");
+                addJobTable(2, "P B B B B P");
+                addJobTable(3, "P P P P P");
+                addJobTable(4, "B P P P B B");
+
+			})
+
+
+			$("#btn_stop").click(function() {
+
+				if(!running){
+					$("#btn_stop").val('Stop')
+					$("#btn_stop").removeClass('btn-success')
+					$("#btn_stop").addClass('btn-danger')
+				}
+
+				else{
+					$("#btn_stop").val('Play')
+					$("#btn_stop").removeClass('btn-danger')
+					$("#btn_stop").addClass('btn-success')
+				}
+
+				running = !running;
+
+				function play () {
+					if (running) {
+						$("#btn_forward").click();
+						setTimeout(play, 2000);
+					}
+				}
+
+				play();
+			})
+
+
+			function removeRow(this_id) {
+
+				controller.removeJob(this_id)//remove o Job do motor
+				$('#row_job_id_' + this_id).remove()
+			
+			}
+
+			function setActionColumnVisible(boolean){
+
+				if(boolean){
+
+					$('.action').removeClass("hide")
+
+				}
+				else{
+					$('.action').addClass("hide")					
+				}
+
+
+			}
+
+
+			$("#btn_start").click(function() {
+
+				controller = new Controller()
+
+				$("#btn_forward").show()
+				$("#btn_stop").show()
+				$("#btn_start").hide()
+
+				$("#div_algorithmForm").addClass("hide")
+				// $("#tb_input").addClass("hide")
+
+				$("#div_executinQueue").removeClass("hide")
+				$("#div_statistics").removeClass("hide")
+				$("#div_legend").removeClass("hide")
+				$("#div_executionTime").removeClass("hide")
+				$("#div_jobsStats").removeClass("hide")
+				$("#div_blockedQueue").removeClass("hide")
+				$("#div_execution").removeClass("hide")
+
+
+				$("#div_left").addClass("col-md-8")
+				$("#div_right").addClass("col-md-4")
+				$("#div_left").removeClass("col-md-4")
+				$("#div_right").removeClass("col-md-8")
+
+
+				var algorithmSelected = $('input[name=type]:checked', '#algorithmForm').val()
+
+				if (algorithmSelected == "FCFS") { controller.setAlgorithm(0) }
+				else if (algorithmSelected == "SJF") { controller.setAlgorithm(1) }
+				else if (algorithmSelected == "SRTN") {	controller.setAlgorithm(2) }
+
+
+				var table_data = [];
+
+				$('tr', $('#tbody_trace')).each(function(){
+				    
+				    var row_data = [];
+				    
+				    $('td', this).each(function(){
+				        
+				        row_data.push($(this).text());
+				        
+				    });
+				    
+				    table_data.push(row_data);
+
+				});
+
+
+
+				for(row=0; row<table_data.length; row++) {
+					 if (!controller.addJob(table_data[row][0], table_data[row][1], table_data[row][2].trim()))
+					  	return
+					
+				}
+
+				setActionColumnVisible(false);
+				controller.updateExecQueue()
+
+			})
+
+			$("#btn_forward").click(function() {
+
+				$("#btn_backward").removeClass("disabled")
+				controller.nextExecStep()
+
+			})
+
+
+			$("#btn_randomGen").click(function() {
+
+				$("#btn_start").show()
+
+				var controller_aux = new Controller()
+
+				var instructions = controller_aux.generateRandomSimulation()
+
+				
+				addJobTable(arrival_time, instructions)				
+
+				arrival_time += 2;
+
+			})
+		</script>
+</body>
+</html>

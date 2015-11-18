@@ -1,0 +1,148 @@
+body {
+  padding-top: 60px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+td {
+   text-align: center;
+}
+
+#tbody_execqueue td, #tbody_jobsStats td {
+   text-align: left;  
+}
+
+th {
+   text-align:center;
+}
+
+tr {
+   text-align:center;
+}
+
+.without-padding {
+	padding: 0;
+}
+
+.h-scroll {
+	width: 100% !important;
+	overflow-x: scroll;
+	position: relative;
+}
+
+.h-scroll_timeline{
+  width: 100% !important;
+  overflow-x: scroll;
+  position: relative;
+}
+
+.cell {
+  min-width: 25px !important;
+  max-width: 25px !important;
+}
+
+.job-col {
+    /*display: flex;*/
+    display: inline-block;
+    padding: 10px;
+    min-width: 21rem;
+    border-right: 1px solid #ddd;
+}
+
+.job-dad {
+	display: flex;
+  flex-direction: row;
+}
+
+#fixed-panel {
+	min-width: 100%;
+}
+
+#fixed-panel2 {
+  min-width: 100%;
+}
+
+label.small {
+	font-size: 8px;
+}
+
+
+.margin-bottom-70 {
+  margin-bottom: 70px;
+}
+
+.margin-bottom-15 {
+  margin-bottom: 15px;
+}
+
+.margin-top-15 {
+  margin-top: 15px;
+}
+
+.margin-top-5 {
+  margin-top: 5px;
+}
+
+
+.margin-right-15 {
+  margin-right: 30px;
+}
+
+.margin-right-3 {
+  margin-right: 3px;
+}
+
+.margin-right-10 {
+  margin-right: 15px;
+}
+
+.margin-left-15 {
+  margin-left: 15px;
+}
+
+.margin-left-350 {
+  margin-left: 350px;
+}
+
+.margin-top-8 {
+  margin-top: 8px;
+}
+
+.font-size-11 {
+  font-size: 11px;
+}
+
+.policy-header {
+ padding-right: 0px; 
+ margin-top: 2px; 
+ font-size:18px;"
+}
+
+.blue {
+    background-color:#666666 !important;
+    color: white !important;
+}
+
+.gray {
+    background-color:#F2F2F2 !important;
+    color: white !important;
+}
+
+.green {
+  background-color:#00AD4B !important;
+  color: white !important;
+}
+
+.red {
+  background-color:#FF0000 !important;
+  color: white !important;
+}
+
+.yellow {
+  background-color:#FF8400 !important;
+  color: white !important;
+}
+
+
